@@ -5,7 +5,11 @@ const Header = () => {
 	return (
 		<div>
 			<header className="header">
-				<h2>Where in the world?</h2>
+				<Link href="/">
+					<a>
+						<h2>Where in the world?</h2>
+					</a>
+				</Link>
 				<button className="btn">
 					<FaRegMoon /> Dark Mode
 				</button>
@@ -19,7 +23,7 @@ const Header = () => {
 				.header {
 					display: flex;
 					justify-content: space-between;
-					margin: 0 50px;
+					margin: 0 40px;
 				}
 
 				.btn {

@@ -1,9 +1,11 @@
 import Layout from '../components/Layout'
 import { useState, useEffect } from 'react'
 import CardGrid from '../components/CardGrid'
+import { FaSearch } from 'react-icons/fa'
+import { IconContext } from 'react-icons/lib'
 
 export default function Home() {
-	const [searchText, setSearchText] = useState('')
+	const [searchText, setSearchText] = useState('Search for a country...')
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState('')
 	const [countries, setCountries] = useState(null)
@@ -14,7 +16,6 @@ export default function Home() {
 			setLoading(true)
 			try {
 				let res
-				// const res = await fetch(`https://restcountries.com/v3.1/all`)
 				if (selectedValue === 'Filter By Region') {
 					res = await fetch(`https://restcountries.com/v3.1/all`)
 				} else {
@@ -75,23 +76,30 @@ export default function Home() {
 
 	return (
 		<Layout>
-			<input
-				type="text"
-				value={searchText}
-				onChange={(e) => setSearchText(e.target.value)}
-				onKeyUp={handleKeyUp}
-			/>
-			<select
-				defaultValue={selectedValue}
-				onChange={(e) => setSelectedValue(e.target.value)}
-			>
-				<option value="Filter By Region">Filter By Region</option>
-				<option value="Africa">Africa</option>
-				<option value="America">America</option>
-				<option value="Asia">Asia</option>
-				<option value="Europe">Europe</option>
-				<option value="Oceania">Oceania</option>
-			</select>
+			<div className="filter">
+				<div className="search">
+					<IconContext.Provider value={{ color: 'hsl(0, 0%, 52%)' }}>
+						<FaSearch />
+					</IconContext.Provider>
+					<input
+						type="search"
+						value={searchText}
+						onChange={(e) => setSearchText(e.target.value)}
+						onKeyUp={handleKeyUp}
+					/>
+				</div>
+				<select
+					defaultValue={selectedValue}
+					onChange={(e) => setSelectedValue(e.target.value)}
+				>
+					<option value="Filter By Region">Filter By Region</option>
+					<option value="Africa">Africa</option>
+					<option value="America">America</option>
+					<option value="Asia">Asia</option>
+					<option value="Europe">Europe</option>
+					<option value="Oceania">Oceania</option>
+				</select>
+			</div>
 			<CardGrid countries={countries} />
 		</Layout>
 	)
