@@ -1,25 +1,33 @@
 import Layout from '../components/Layout'
 import { useState, useEffect } from 'react'
-import Image from 'next/image'
+import CardGrid from '../components/CardGrid'
 
 export default function Home() {
 	const [searchText, setSearchText] = useState('')
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState('')
 	const [countries, setCountries] = useState(null)
+	const [selectedValue, setSelectedValue] = useState('Filter By Region')
 
 	useEffect(() => {
 		const fetchCountries = async () => {
+			setLoading(true)
 			try {
-				const res = await fetch(`https://restcountries.com/v3.1/all`)
+				let res
+				// const res = await fetch(`https://restcountries.com/v3.1/all`)
+				if (selectedValue === 'Filter By Region') {
+					res = await fetch(`https://restcountries.com/v3.1/all`)
+				} else {
+					res = await fetch(
+						`https://restcountries.com/v3.1/region/${selectedValue}`
+					)
+				}
 				if (res.ok) {
 					const data = await res.json()
-
 					setLoading(false)
-					// console.log(data)
 					setCountries(data)
 				} else {
-					throw new Error('Error fetching the contries :(')
+					throw new Error('Error fetching the countries :(')
 				}
 			} catch (error) {
 				setError(error.message)
@@ -27,7 +35,7 @@ export default function Home() {
 			}
 		}
 		fetchCountries()
-	}, [])
+	}, [selectedValue])
 
 	const handleKeyUp = async (e) => {
 		if (e.key === 'Enter') {
@@ -44,15 +52,12 @@ export default function Home() {
 				} else {
 					throw new Error('Error fetching the country :(')
 				}
-				// console.log(data)
 				e.target.blur()
 			} catch (error) {
 				setError(error.message)
 				setLoading(false)
 			}
 		}
-
-		// setCountries(data)
 	}
 
 	if (loading)
@@ -76,20 +81,18 @@ export default function Home() {
 				onChange={(e) => setSearchText(e.target.value)}
 				onKeyUp={handleKeyUp}
 			/>
-			<div className="grid-container">
-				{countries.map((country) => (
-					<div key={country.cca2}>
-						<Image
-							alt="Flag"
-							src={country.flags.png}
-							objectFit="contain"
-							width={320}
-							height={320}
-						/>
-						<div>{country.name.common}</div>
-					</div>
-				))}
-			</div>
+			<select
+				defaultValue={selectedValue}
+				onChange={(e) => setSelectedValue(e.target.value)}
+			>
+				<option value="Filter By Region">Filter By Region</option>
+				<option value="Africa">Africa</option>
+				<option value="America">America</option>
+				<option value="Asia">Asia</option>
+				<option value="Europe">Europe</option>
+				<option value="Oceania">Oceania</option>
+			</select>
+			<CardGrid countries={countries} />
 		</Layout>
 	)
 }
