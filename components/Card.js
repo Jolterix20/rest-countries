@@ -12,8 +12,24 @@ const Card = ({ country }) => {
 				width={320}
 				height={160}
 			/>
-			<div>
+			<div className={styles.content}>
 				<strong>{country.name.common}</strong>
+				<div>
+					<p>
+						<span className={styles.tag}>Population: </span>
+						<span>
+							{new Intl.NumberFormat().format(country.population)}
+						</span>
+					</p>
+					<p>
+						<span className={styles.tag}>Region: </span>
+						<span>{country.region}</span>
+					</p>
+					<p>
+						<span className={styles.tag}>Capital: </span>
+						<span>{country.capital}</span>
+					</p>
+				</div>
 			</div>
 		</div>
 	)

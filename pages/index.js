@@ -5,7 +5,7 @@ import { FaSearch } from 'react-icons/fa'
 import { IconContext } from 'react-icons/lib'
 
 export default function Home() {
-	const [searchText, setSearchText] = useState('Search for a country...')
+	const [searchText, setSearchText] = useState('')
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState('')
 	const [countries, setCountries] = useState(null)
@@ -41,7 +41,6 @@ export default function Home() {
 	const handleKeyUp = async (e) => {
 		if (e.key === 'Enter') {
 			setLoading(true)
-
 			try {
 				const res = await fetch(
 					`https://restcountries.com/v3.1/name/${searchText}`
@@ -84,6 +83,7 @@ export default function Home() {
 					<input
 						type="search"
 						value={searchText}
+						placeholder={`Search for a country...`}
 						onChange={(e) => setSearchText(e.target.value)}
 						onKeyUp={handleKeyUp}
 					/>

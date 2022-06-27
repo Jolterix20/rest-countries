@@ -2,6 +2,23 @@
 	background-color: hsl(0, 0%, 100%);
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: flex-start;
 	margin: 0 auto;
+	border-radius: 10px;
+	overflow: hidden;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.content {
+	padding: 20px 30px;
+	font-size: 14px;
+	overflow-wrap: break-word;
+}
+
+.content > strong {
+	font-size: 16px;
+}
+
+.tag {
+	font-weight: 600;
 }
