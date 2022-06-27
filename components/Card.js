@@ -13,7 +13,11 @@ const Card = ({ country }) => {
 				height={160}
 			/>
 			<div className={styles.content}>
-				<strong>{country.name.common}</strong>
+				<Link href={`/${country.cca3}`}>
+					<a>
+						<strong>{country.name.common}</strong>
+					</a>
+				</Link>
 				<div>
 					<p>
 						<span className={styles.tag}>Population: </span>
