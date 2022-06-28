@@ -31,7 +31,11 @@ const Card = ({ country }) => {
 					</p>
 					<p>
 						<span className={styles.tag}>Capital: </span>
-						<span>{country.capital}</span>
+						<span>
+							{country.capital
+								? country.capital?.join(', ')
+								: 'None'}
+						</span>
 					</p>
 				</div>
 			</div>

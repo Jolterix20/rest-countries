@@ -1,0 +1,18 @@
+.container {
+	padding: 50px 50px;
+}
+
+.back_btn {
+	background-color: #fff;
+	outline: none;
+	border: none;
+	font: inherit;
+	padding: 10px 30px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+	border-radius: 5px;
+	font-weight: 600;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	cursor: pointer;
+}

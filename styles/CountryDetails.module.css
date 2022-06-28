@@ -1,0 +1,17 @@
+.details_grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.details_grid > * {
+	padding: 0 40px;
+}
+
+.details {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.tag {
+	font-weight: 600;
+}
