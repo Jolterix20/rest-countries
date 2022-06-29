@@ -1,5 +1,6 @@
 import BackButton from '../components/BackButton'
 import Layout from '../components/Layout'
+import CountryTag from '../components/CountryTag'
 import styles from '../styles/CountryDetails.module.css'
 import Image from 'next/image'
 import countryISOMapping from '../helpers/countryCodeMappings'
@@ -9,11 +10,11 @@ const CountryDetails = ({ country }) => {
 		<Layout>
 			<BackButton />
 			<div className={styles.details_grid}>
-				<div>
+				<div className={styles.image_container}>
 					<Image
 						src={country.flags.png}
 						width={320}
-						height={320}
+						height={200}
 						layout="responsive"
 						objectFit="contain"
 						alt={country.name.common}
@@ -73,19 +74,30 @@ const CountryDetails = ({ country }) => {
 							</p>
 						</div>
 					</div>
-					<p>
+					<p className={styles.tags}>
 						<span className={styles.tag}>Border Countries: </span>
-						{country.borders ? (
-							country.borders.map((border) => (
-								<span key={border}>
-									{new Intl.DisplayNames(['en'], {
-										type: 'region',
-									}).of(countryISOMapping[border])}
-								</span>
-							))
-						) : (
-							<span>None</span>
-						)}
+						<div className={styles.tag_container}>
+							{country.borders ? (
+								country.borders.map((border) => {
+									const country = new Intl.DisplayNames(
+										['en'],
+										{
+											type: 'region',
+										}
+									).of(countryISOMapping[border])
+
+									return (
+										<CountryTag
+											key={border}
+											country={country}
+											border={border}
+										/>
+									)
+								})
+							) : (
+								<span>None</span>
+							)}
+						</div>
 					</p>
 				</div>
 			</div>

@@ -1,0 +1,6 @@
+.country_tag {
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	border-radius: 2px;
+	width: 100px;
+	text-align: center;
+}
