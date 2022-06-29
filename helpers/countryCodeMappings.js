@@ -189,6 +189,7 @@ const countryISOMapping = {
 	LCA: 'LC',
 	MAF: 'MF',
 	SPM: 'PM',
+	SXM: 'SX',
 	VCT: 'VC',
 	WSM: 'WS',
 	SMR: 'SM',

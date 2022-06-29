@@ -28,11 +28,13 @@ const CountryDetails = ({ country }) => {
 								<span className={styles.tag}>
 									Native Name:{' '}
 								</span>
-								{
-									country.name.nativeName[
-										Object.keys(country.name.nativeName)[0]
-									].common
-								}
+								{country.name.nativeName
+									? country.name.nativeName[
+											Object.keys(
+												country.name.nativeName
+											)[0]
+									  ].common
+									: country.name.official}
 							</p>
 							<p>
 								<span className={styles.tag}>Population: </span>
@@ -60,17 +62,23 @@ const CountryDetails = ({ country }) => {
 								<span className={styles.tag}>
 									Top Level Domain:{' '}
 								</span>
-								{country.tld.join(', ')}
+								{country.tld ? country.tld.join(', ') : 'None'}
 							</p>
 							<p>
 								<span className={styles.tag}>Currencies: </span>
-								{Object.values(country.currencies)
-									.map((curr) => curr.name)
-									.join(', ')}
+								{country.currencies
+									? Object.values(country.currencies)
+											.map((curr) => curr.name)
+											.join(', ')
+									: 'None'}
 							</p>
 							<p>
 								<span className={styles.tag}>Languages: </span>
-								{Object.values(country.languages).join(', ')}
+								{country.languages
+									? Object.values(country.languages).join(
+											', '
+									  )
+									: 'None'}
 							</p>
 						</div>
 					</div>
