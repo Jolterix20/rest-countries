@@ -30,15 +30,43 @@ input,
 select {
 	font: inherit;
 	font-size: 14px;
+	outline: none;
+	border: none;
 }
 
 input {
 	color: hsl(0, 0%, 52%);
+	border: none;
+	padding: 10px;
+	width: 300px;
+	border-radius: 5px;
+}
+
+input:focus,
+select:focus {
+	border: none;
+	outline: none;
+}
+
+select {
+	padding: 10px 10px;
+	border-radius: 5px;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.tag_span {
+	padding: 0 15px;
+	display: grid;
+	place-items: center;
+	background-color: #fff;
 }
 
 .search {
 	display: flex;
 	align-items: center;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+	border-radius: 5px;
+	background-color: #fff;
 }
 
 .filter {
@@ -59,6 +87,16 @@ input {
 		padding: 0 50px;
 		transition: grid-template-columns 1s ease-in;
 	}
+}
+
+@media (min-width: 600px) {
+	.grid-container {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 50px;
+		padding: 0 50px;
+		transition: grid-template-columns 1s ease-in;
+	}
 
 	.filter {
 		background-color: hsl(0, 0%, 98%);
@@ -71,16 +109,6 @@ input {
 		margin: 40px 0;
 		margin-left: 50px;
 		margin-right: 50px;
-	}
-}
-
-@media (min-width: 600px) {
-	.grid-container {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 50px;
-		padding: 0 50px;
-		transition: grid-template-columns 1s ease-in;
 	}
 }
 

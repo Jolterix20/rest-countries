@@ -78,7 +78,12 @@ export default function Home() {
 			<div className="filter">
 				<div className="search">
 					<IconContext.Provider value={{ color: 'hsl(0, 0%, 52%)' }}>
-						<FaSearch />
+						<span
+							style={{ background: '#fff' }}
+							className="tag_span"
+						>
+							<FaSearch />
+						</span>
 					</IconContext.Provider>
 					<input
 						type="search"
