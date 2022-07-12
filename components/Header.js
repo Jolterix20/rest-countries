@@ -1,17 +1,26 @@
 import Link from 'next/link'
-import { FaMoon, FaRegMoon } from 'react-icons/fa'
+import { FaRegSun, FaRegMoon } from 'react-icons/fa'
+import { useThemeContext } from '../hooks/useThemeContext'
 
 const Header = () => {
+	const { isDarkMode, setIsDarkMode, colours } = useThemeContext()
+	const { darkModeText } = colours
+
 	return (
-		<div>
+		<div style={{ backgroundColor: isDarkMode && 'hsl(209, 23%, 22%)' }}>
 			<header className="header">
 				<Link href="/">
 					<a>
 						<h2>Where in the world?</h2>
 					</a>
 				</Link>
-				<button className="btn">
-					<FaRegMoon /> Dark Mode
+				<button
+					className="btn"
+					onClick={() => setIsDarkMode(!isDarkMode)}
+					style={{ color: isDarkMode && darkModeText }}
+				>
+					{isDarkMode ? <FaRegSun /> : <FaRegMoon />}{' '}
+					{isDarkMode ? 'Light' : 'Dark'} Mode
 				</button>
 			</header>
 

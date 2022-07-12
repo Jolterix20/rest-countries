@@ -1,10 +1,16 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from '../styles/Card.module.css'
+import { useThemeContext } from '../hooks/useThemeContext'
 
 const Card = ({ country }) => {
+	const { isDarkMode } = useThemeContext()
+
 	return (
-		<div className={styles.card}>
+		<div
+			className={styles.card}
+			style={{ backgroundColor: isDarkMode && 'hsl(209, 23%, 22%)' }}
+		>
 			<Image
 				alt="Flag"
 				src={country.flags.png}

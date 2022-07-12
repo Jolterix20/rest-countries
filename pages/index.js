@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import CardGrid from '../components/CardGrid'
 import { FaSearch } from 'react-icons/fa'
 import { IconContext } from 'react-icons/lib'
+import { useThemeContext } from '../hooks/useThemeContext'
 
 export default function Home() {
 	const [searchText, setSearchText] = useState('')
@@ -10,6 +11,8 @@ export default function Home() {
 	const [error, setError] = useState('')
 	const [countries, setCountries] = useState(null)
 	const [selectedValue, setSelectedValue] = useState('Filter By Region')
+	const { isDarkMode, colours } = useThemeContext()
+	const { darkModeBG, darkModeElement, darkModeText } = colours
 
 	useEffect(() => {
 		const fetchCountries = async () => {
@@ -75,11 +78,29 @@ export default function Home() {
 
 	return (
 		<Layout>
-			<div className="filter">
-				<div className="search">
-					<IconContext.Provider value={{ color: 'hsl(0, 0%, 52%)' }}>
+			<div
+				className="filter"
+				style={{ backgroundColor: isDarkMode && darkModeBG }}
+			>
+				<div
+					className="search"
+					style={{
+						backgroundColor: isDarkMode && darkModeElement,
+					}}
+				>
+					<IconContext.Provider
+						value={{
+							color: isDarkMode
+								? darkModeText
+								: 'hsl(0, 0%, 52%)',
+						}}
+					>
 						<span
-							style={{ background: '#fff' }}
+							style={{
+								background: isDarkMode
+									? darkModeElement
+									: '#fff',
+							}}
 							className="tag_span"
 						>
 							<FaSearch />
@@ -91,11 +112,19 @@ export default function Home() {
 						placeholder={`Search for a country...`}
 						onChange={(e) => setSearchText(e.target.value)}
 						onKeyUp={handleKeyUp}
+						style={{
+							backgroundColor: isDarkMode && darkModeElement,
+							color: isDarkMode && darkModeText,
+						}}
 					/>
 				</div>
 				<select
 					defaultValue={selectedValue}
 					onChange={(e) => setSelectedValue(e.target.value)}
+					style={{
+						backgroundColor: isDarkMode && darkModeElement,
+						color: isDarkMode && darkModeText,
+					}}
 				>
 					<option value="Filter By Region">Filter By Region</option>
 					<option value="Africa">Africa</option>
